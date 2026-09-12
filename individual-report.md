@@ -22,15 +22,15 @@
 
 | # | Lăng kính (Lặp lại / Tốn thời gian / AI có thể tốt hơn / Pain từ người khác) | Problem quan sát được | Ai chịu ảnh hưởng? | Dấu hiệu thật (số + bằng chứng) |
 |---|---|---|---|---|
-| 1 |    Viết nhiều đoạn code CRUD giống nhau/ Developer/ 5–10lần/tuần
-| 2 |    Tìm và sửa bug mất nhiều thời gian/ Developer và tester/ 3–5 bug/tuần
-| 3 |    Kiểm tra dữ liệu khách sạn thủ công/ Developer, 2–5lần/tuần
-| 4 |    Tra cứu code và syntax nhiều lần/Developer/5–10 lần/tuần,
-| 5 |    Viết test case thủ công/ Developer và tester/ 3–5chức năng/tuần
-| 6 |    Khách hàng báo lỗi thiếu thông tin/ Developer và khách hàng/2–5 lần trao đổi/issue
-| 7 |    Kiểm tra các bước trước khi deploy/Developer/2–5lần/tuần
-| 8 |    Đọc code cũ để hiểu module/Developer/2–4 task/tuần,
-| 9 | | | | |
+| 1 | Lặp lại | Viết nhiều đoạn code CRUD giống nhau cho các chức năng quản lý| Developer | 5–10 lần/tuần, theo ghi nhận cá nhân trong quá trình phát triển|
+| 2 | Tốn thời gian | Tìm nguyên nhân và sửa bug mất nhiều thời gian,có thể ảnh hưởng đến tiến độ công việc| Developer và tester | 3–5 bug/tuần, theo số lượng bug phát sinh trong quá trình làm việc|
+| 3 | Tốn thời gian | Kiểm tra dữ liệu khách sạn thủ công trước và sau khi xử lý chức năng| Developer| 2–5 lần/tuần, theo tần suất kiểm tra dữ liệu thực tế|
+| 4 | AI có thể tốt hơn| Tra cứu code, syntax và cách sử dụng hàm/API nhiều lần khi lập trình| Developer | 5–10 lần/tuần, theo ghi nhận cá nhân khi phát triển chức năng|
+| 5 | Lặp lại | Viết test case thủ công cho các chức năng mới, dễ bỏ sót trường hợp kiểm thử| Developer và tester | 3–5 chức năng/tuần, theo số chức năng cần kiểm thử|
+| 6 | Pain từ người khác | Khách hàng báo lỗi nhưng đôi khi thiếu thông tin, phải trao đổi lại để xác định vấn đề| Developer và khách hàng|2–5 lần trao đổi/issue, theo các lần phản hồi và xử lý issue |
+| 7 | Lặp lại | Kiểm tra các bước cần thiết trước khi deploy để tránh xảy ra lỗi khi đưa lên môi trường thực tế| Developer | 2–5 lần/tuần, theo số lần thực hiện deploy|
+| 8 | Tốn thời gian | Đọc và phân tích code cũ để hiểu cách hoạt động của module trước khi sửa đổi| Developer | 2–4 task/tuần, mỗi task cần đọc và tìm hiểu code cũ|
+| 9  | | | | |
 | 10 | | | | |
 
 > Gợi ý tự soi: tuần trước mất nhiều thời gian nhất vào việc gì? Việc gì hay trì hoãn? Người khác hay hỏi lại câu gì? Workflow nào ai cũng biết là chậm?
