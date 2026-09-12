@@ -55,58 +55,57 @@ Giữ bài nào: actor cụ thể, workflow vẽ được 3-7 bước, bottlenec
 
 | Rank | Problem (copy từ bảng scan) | Vì sao chọn (2-3 ý) | Điều còn chưa chắc |
 |---|---|---|---|
-| 1 |   Tìm và sửa bug/Thường gặp,ảnh hưởng tiến độ/Chưa đo thời gian
-| 2 |   Viết test case/Lặp lại, dễ sai/Chưa đo hiệu quả AI
-| 3 |   Tra cứu code/syntax/Xảy ra thường xuyên/Chưa đo số lần
+| 1 | Tìm và sửa bug (2) | Tần suất đều đặn (4 bug/tuần vừa rồi),có bug thật mất tới 90p,ảnh hưởng trực tiếp tiến độ và khách hàng | Chưa biết AI đọc log nội bộ 'có hiểu đúng ngữ cảnh không |
+| 2 | Viết test case (5) | Có bằng chứng cụ thể bị bỏ sót case biên tuần trước (huỷ phòng sát giờ), dễ đo trước/sau | Chưa thử AI thật để biết %case biên AI gợi ý đúng là bao nhiêu |
+| 3 | Tra cứu code/syntax (4) | Xảy ra đều đặn (7 lần/tuần),dễ áp dụng AI ngay,ít rủi ro | Chưa đo % lần AI trả lời đúng ngay lần đầu so với phải tìm thêm |
 
 ### 2.2. Problem Cards chi tiết (lặp lại cho cả 3 cards)
 
-– Tìm và sửa bug
+-Tìm và sửa bug
 Actor: Developer
-Workflow: Nhận bug- kiểm tra log- tìm code -sửa- test
-Bottleneck: Tìm nguyên nhân bug
-Impact:  3–5 bug/tuần
+Workflow: Nhận bug → kiểm tra log → tìm code liên quan → xác định nguyên nhân → sửa → test
+Bottleneck: Tìm nguyên nhân bug (bug race condition tuần trước riêng bước này đã mất 45/90p)
+Impact: 4 bug/tuần, tổng thời gian xử lý 4.5 giờ/tuần
+
 
 -Viết test case
 Actor: Developer
-Workflow: Đọc yêu cầu -xác định case- viết test- chạy test- sửa lỗi
-Bottleneck: Viết test case
-Impact: 30–60 phút/chức năng
+Workflow: Đọc yêu cầu → xác định case → viết test → chạy test → sửa lỗi
+Bottleneck: Xác định đầy đủ case biên
+Impact: 40–55p/chức năng,2 chức năng/tuần vừa rồi → 1.5 giờ/tuần, cộng thêm thời gian tester phát hiện lại case sót
+
 
 – Tra cứu code/syntax
-
 Actor: Developer
-Workflow: Gặp vấn đề -tìm kiếm- đọc tài liệu -thử code - hoàn thành
-Bottleneck: Tìm thông tin phù hợp
-Impact:5–10 lần/tuần
-
+Workflow: Gặp vấn đề → tìm kiếm → đọc tài liệu → thử code → hoàn thành
+Bottleneck: Tìm thông tin phù hợp giữa nhiều nguồn không đồng nhất
+Impact: 7 lần/tuần, 8 phút/lần → 56p/tuần
 
 #### Problem Card #1 — [Tên problem]
 
 ```text
-Problem 1 câu: Tìm nguyên nhân và sửa bug mất nhiều thời gian
+Problem 1 câu: Tìm nguyên nhân và sửa bug mất nhiều thời gian, đặc biệt với lỗi liên quan dữ liệu liên bảng
 
 Actor: Developer
 
-Thời điểm / bối cảnh: Khi khách hàng báo lỗi
+Thời điểm / bối cảnh: Khi khách hàng (bộ phận vận hành khách sạn) báo lỗi qua hệ thống ticket hoặc trực tiếp
 
-Current workflow 3-7 bước:
+Current workflow (5 bước):
 1. Nhận thông tin lỗi
-2. Kiểm tra log
-3. Tìm code liên quan
-4. Xác định nguyên nhân
-5. Sửa và test
+2. Kiểm tra log hệ thống
+3. Tìm code liên quan đến module bị lỗi
+4. Xác định nguyên nhân gốc
+5. Sửa code và test lại
 
-Bottleneck:Tìm nguyên nhân bug
+Bottleneck: Tìm nguyên nhân bug,ví dụ bug race condition tuần trước riêng bước này chiếm 45p trong tổng 90pxử lý
 
-Impact:3–5 bug/tuần.
+Impact: 4 bug trong tuần trước (25–90p/bug), tổng 4.5 giờ/tuần dành cho việc fix bug
 
-Success metric:Giảm thời gian tìm và sửa bug
+Success metric: Giảm thời gian xác định nguyên nhân bug trung bình (mục tiêu: 35p/bug xuống 15–20p/bug)
 
-Non-AI alternative: Cải thiện log và tài liệu code
+Non-AI alternative: Cải thiện chuẩn log (thêm ngữ cảnh: user, action, timestamp, module) và viết tài liệu luồng nghiệp vụ cho từng module
 
-
-AI hypothesis: AI hỗ trợ phân tích log và gợi ý nguyên nhân bug
+AI hypothesis: AI hỗ trợ đọc log và đối chiếu code liên quan, gợi ý các nguyên nhân khả dĩ theo mức độ ưu tiên
 
 Quick gut:Có khả năng áp dụng AI
 [ x] No AI / process fix
@@ -137,29 +136,29 @@ File đính kèm (nếu vẽ riêng): `01-individual-problem-scan-workflow-card-
 #### Problem Card #2 — [Tên problem]
 
 ```text
-Problem 1 câu:Viết test case thủ công mất thời gian và dễ bỏ sót
+Problem 1 câu: Viết test case thủ công mất thời gian và dễ bỏ sót các trường hợp biên
 
-Actor:Developer
+Actor: Developer
 
-Thời điểm / bối cảnh:Khi hoàn thành chức năng mới
+Thời điểm / bối cảnh: Khi hoàn thành một chức năng mới, trước khi bàn giao cho tester
 
-Current workflow 3-7 bước:
-1.Đọc yêu cầu
-2.Xác định trường hợp test
-3.Viết test case
-4.Chạy test
-5.Sửa lỗi
+Current workflow (5 bước):
+1. Đọc yêu cầu
+2. Xác định các trường hợp cần test
+3. Viết test case
+4. Chạy test
+5. Sửa lỗi nếu phát hiện
 
 
-Bottleneck:Xác định đầy đủ test case.
+Bottleneck: Xác định đầy đủ test case-tuần trước bỏ sót case "huỷ phòng sát giờ check-in" cho chức năng huỷ phòng, tester phải báo lại
 
-Impact:30–60p/chức năng.
+Impact: 40–55p/chức năng, 2 chức năng/tuần vừa rồi, 1 case biên bị sót trong 2 chức năng đó
 
-Success metric:Giảm thời gian viết test và giảm test bị bỏ sót
+Success metric: Giảm số case biên bị bỏ sót ,giảm thời gian viết test xuống 25–30p/chức năng
 
-Non-AI alternative:Dùng checklist test case
+Non-AI alternative: Dùng checklist test case chuẩn hoá theo từng loại chức năng (đặt phòng, thanh toán, huỷ/đổi phòng)
 
-AI hypothesis:AI gợi ý test case và các trường hợp biên
+AI hypothesis: AI đọc yêu cầu và gợi ý danh sách test case, nhấn mạnh các trường hợp biên đặc thù khách sạn (overbooking, huỷ sát giờ, đổi giá theo mùa)
 
 Quick gut:
 [ ] No AI / process fix
@@ -265,8 +264,8 @@ Cần giới hạn AI ở bước nào để tránh sửa code sai
 ```
 
 **AI phản biện Card (nếu có):**
-- Điểm yếu AI chỉ ra:Chưa có số liệu đo chính xác
-- Tôi sửa gì:Đo thời gian xử lý 5–10 bug thực tế
+-Điểm yếu AI chỉ ra: Mới có 1 tuần dữ liệu, chưa đủ để làm baseline chắc chắn
+-Tôi sửa gì: Sẽ tiếp tục ghi lại thời gian xử lý cho 5–10 bug tiếp theo trong 2 tuần tới để có baseline đáng tin cậy hơn trước khi thử nghiệm AI
 
 ### Self-check nộp phần 01
 - [X ] Có 5+ problems + top 3 Cards đủ field
